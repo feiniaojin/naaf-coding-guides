@@ -6,6 +6,6 @@
 
 本项目是NAAF相关的编码指南，包括：
 
-* NAAF模块指南：用于指导NAAF项目进行maven module分包。
-
-* NAAF编码指南，推荐一些实际开发中建议。
+* naaf-module-guides：用于指导NAAF项目进行maven module分包，详细描述了每个模块的作用以及开发规范。
+* naaf-ddd-guides：用于指导NAAF项目进行领域驱动设计开发，包括编码模板、每个组件的用法。
+* naaf-component-guides：用于介绍naaf相关组件的使用，里面介绍了包括naaf-graceful-response等组件。

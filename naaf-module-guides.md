@@ -2,23 +2,21 @@
 
 > 本文档用于指导NAAF使用者将代码放置到适当的包中。
 
-[toc]
-
 # 1. NAAF项目结构
 
 详细项目结构，见https://github.com/feiniaojin/naaf-init
 
 # 2.NAAF项目模块指南
 
-## 2.1 naaf-common
+## 2.1 naaf-commons
 
 项目级别的公共包，用来放置通用的工具类。
 
-【强制】**naaf-common**包中只能引入外部公共类库，例如apache-commons。
+【强制】**naaf-commons**包中只能引入外部公共类库，例如apache-commons。
 
-【强制】**naaf-common**包中不允许引入中间件客户端，例如Elastic Search、Redis的客户端，如果必须依赖中间件客户端，必须单独创建一个包，名字格式为：naaf-common-xxx，如naaf-common-redis。
+【强制】**naaf-commons**包中不允许引入中间件客户端，例如Elastic Search、Redis的客户端，如果必须依赖中间件客户端，必须单独创建一个包，名字格式为：naaf-common-xxx，如naaf-common-redis。
 
-【强制】**naaf-common**中不允许有默认初始化的Bean。
+【强制】**naaf-commons**中不允许有默认初始化的Bean。
 
 【建议】一些类似POI处理的专业类库，建议也单独一个包进行放置。
 
@@ -76,9 +74,9 @@ public interface ItemMapperEx{
 
 【强制】RPC调用成功时，如果没有数据返回，直接向上层返回void；如果有数据返回，封装为本层的实体，不得直接返回RPC数据。
 
-## 2.5 naaf-biz-service
+## 2.5 naaf-service
 
-业务服务层，核心业务逻辑放置在本层。
+领域服务层，核心业务逻辑放置在本层。
 
 【强制】本层向Controller层提供DTO包，用于接受请求和响应。Service层向Controller层提供的方法，其入参和返回值必定为基本类型或者DTO对象，不允许直接返回数据库实体。
 
@@ -122,9 +120,9 @@ public class ItemExceptions{
 }
 ```
 
-## 2.6 naaf-protocol-web
+## 2.6 naaf-ohs-web
 
-协议层之一，本层实现了web协议。本层引入SpringMVC相关包，在本层实现拦截器、Controller等逻辑。
+ohs层之一，本层实现了web协议。本层引入SpringMVC相关包，在本层实现拦截器、Controller等逻辑。
 
 【强制】Controller中的方法，不允许返回类似**ResponseBean**对象，应该直接返回业务结果，由NGR自动封装为**ResponseBean**。
 
@@ -163,7 +161,6 @@ public class ItemController {
     }
 }
 
-
 // ItemReq的代码如下
 public class ItemQuery{
     @NotNull(message="id不能为空")
@@ -171,13 +168,13 @@ public class ItemQuery{
 }
 ```
 
-## 2.7 naaf-protocol-rpc-provider
+## 2.7 naaf-ohs-rpc-provider
 
-协议层之一，用于对外暴露RPC服务。对外提供服务时，通常定义一系列RPC接口，本层实现这些接口。
+ohs层之一，用于对外暴露RPC服务。对外提供服务时，通常定义一系列RPC接口，本层实现这些接口。
 
-## 2.8 naaf-protocol-schedule
+## 2.8 naaf-ohs-schedule
 
-协议层之一，用于接入定时任务，依赖Service执行逻辑。
+ohs层之一，用于接入定时任务，依赖Service执行逻辑。
 
 【强制】Schedule层依赖Service层执行逻辑，且不允许将定时任务客户端传入到Service层。
 
