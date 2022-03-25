@@ -4,6 +4,27 @@
 
 # 1. NAAF项目结构
 
+[![qYrfoQ.png](https://s1.ax1x.com/2022/03/25/qYrfoQ.png)](https://imgtu.com/i/qYrfoQ)
+
+```
+naaf-init
+├── LICENSE
+├── README.md
+├── naaf-init-adapter-dao	#dao层，一般是mapper的java和xml文件
+├── naaf-init-adapter-http	#适配外部http协议的服务
+├── naaf-init-adapter-mq-publisher	#适配mq,用于发送消息
+├── naaf-init-adapter-rpc-consumer	#适配rpc服务，用于调用远程rpc
+├── naaf-init-app	#工程的启动模块，里面有main方法，如果需要输出多个可执行文件，以naaf-init-app-xxx的格式命名
+├── naaf-init-service	#工程的领域服务所在层
+├── naaf-init-commons	#工程公共包
+├── naaf-init-domain	#数据库自动生成的Java Bean
+├── naaf-init-ohs-mq-listener	#以mq listener的方式暴露领域服务
+├── naaf-init-ohs-rpc-provider	#以rpc的方式暴露领域服务
+├── naaf-init-ohs-schedule	#以定时任务的方式暴露领域服务
+├── naaf-init-ohs-web	#以web接口的形式暴露领域服务
+└── pom.xml
+```
+
 详细项目结构，见https://github.com/feiniaojin/naaf-init
 
 # 2.NAAF项目模块指南
